@@ -1,0 +1,10 @@
+/* 1️⃣ Google Font MUST come first */
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@300;400;500;600;700&display=swap");
+
+/* 2️⃣ Tailwind MUST come after all @imports */
+@import "tailwindcss";
+
+/* 3️⃣ Custom classes AFTER Tailwind */
+.font-redhat {
+  font-family: "Red Hat Text", sans-serif;
+}

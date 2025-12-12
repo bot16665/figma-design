@@ -1,0 +1,148 @@
+import React from "react";
+import nikeLogo from "../assets/nike.png";
+import btn from "../assets/button.png";
+
+// SHOES
+import shoe1 from "../assets/Black.png";
+import shoe2 from "../assets/Red.png";
+import shoe3 from "../assets/Pink.png";
+import shoe4 from "../assets/Orange.png";
+import shoe5 from "../assets/Brown.png";
+
+// ONLY ONE BACKGROUND FOR HOME
+import bg1 from "../assets/1.png";
+import bg2 from "../assets/red2.png";
+import bg3 from "../assets/pink3.png";
+import bg4 from "../assets/orange4.png";
+import bg5 from "../assets/brown5.png";
+
+// SLIDE DATA (NO BG here)
+const slides = [
+  {
+    name: "Nike Air Max 270",
+    title: "Wear your style",
+    subtitle: "with Comfort",
+    desc: "Lightweight. Breathable. Designed for everyday comfort.",
+    shoe: shoe1,
+    bg: bg1, 
+  },
+  {
+    name: "Nike Air ZoomX",
+    title: "Run Beyond Limits",
+    subtitle: "Feel the Speed",
+    desc: "Built for runners who crave comfort and power.",
+    shoe: shoe2,
+    bg: bg2, 
+  },
+  {
+    name: "Nike React Vision",
+    title: "Step Into",
+    subtitle: "Future Comfort",
+    desc: "Performance and style crafted for daily life.",
+    shoe: shoe3,
+    bg: bg3, 
+  },
+  {
+    name: "Nike Pegasus Turbo",
+    title: "Fly High",
+    subtitle: "Stay Ahead",
+    desc: "Ultra-responsive cushioning for next-level speed.",
+    shoe: shoe4,
+    bg: bg4, 
+  },
+  {
+    name: "Nike Pegasus Turbo",
+    title: "Feel the Power",
+    subtitle: "Run with Style",
+    desc: "Bold design with premium comfort.",
+    shoe: shoe5,
+    bg: bg5, 
+  },
+];
+
+export default function Home({ selectedSlide, setSelectedSlide }) {
+
+  const nextSlide = () => {
+    setSelectedSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  return (
+    <div
+      className="w-full min-h-screen relative overflow-hidden flex items-start justify-center"
+      style={{
+        backgroundImage: `url(${slides[selectedSlide].bg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+     
+
+      <div className="relative z-10 w-full max-w-[1600px]">
+
+        {/* NAVBAR */}
+        <header className="w-full absolute top-6 left-0 flex items-center justify-between px-8">
+          <img src={nikeLogo} alt="Nike" className="w-24" />
+
+          <nav className="absolute left-1/2 -translate-x-1/2 flex gap-3 bg-white/20 px-6 py-2 rounded-full backdrop-blur-md">
+            {["Home", "Men", "Woman", "Kids"].map((it) => (
+              <button
+                key={it}
+                className="text-white text-sm px-3 py-1 rounded-full hover:bg-white hover:text-black transition"
+              >
+                {it}
+              </button>
+            ))}
+          </nav>
+
+          <div className="flex gap-3">
+            {[8, 9, 10].map((s) => (
+              <div
+                key={s}
+                className="text-white text-sm px-3 py-1 border border-white/30 rounded-full"
+              >
+                {s}
+              </div>
+            ))}
+          </div>
+        </header>
+
+        {/* HERO SECTION */}
+        <main className="w-full h-screen flex items-center justify-between px-12">
+
+          {/* LEFT TEXT */}
+          <div className="flex flex-col gap-4 mt-20 ml-10 font-redhat w-[460px]">
+            <h1 className="text-6xl font-bold leading-tight text-white">
+              {/* {slides[selectedSlide].title} <br /> */}
+              <span className="text-gray-300">{slides[selectedSlide].subtitle}</span>
+            </h1>
+
+            <p className="text-gray-400 text-sm">{slides[selectedSlide].name}</p>
+
+            <p className="text-gray-400 text-sm mt-4">{slides[selectedSlide].desc}</p>
+          </div>
+
+          {/* SHOE + BUTTON */}
+          <div className="relative w-[1800px] mt-14 mr-60 flex justify-center pointer-events-none">
+
+            <img
+              src={slides[selectedSlide].shoe}
+              alt="Shoe"
+              className="h-[500px] w-auto rotate-[-12deg] drop-shadow-[0_80px_90px_rgba(0,0,0,0.75)] transition duration-700"
+            />
+
+            {/* NEXT SLIDE BUTTON */}
+            <div className="absolute top-1/2 -translate-y-1/2 right-40 pointer-events-auto mt-65">
+              <button
+                onClick={nextSlide}
+                className="w-12 h-12 hover:scale-110 transition"
+              >
+                <img src={btn} className="w-full h-full" />
+              </button>
+            </div>
+
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
