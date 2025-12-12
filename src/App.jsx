@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Home from "./pages/Home";
-import SecondPage from "./pages/SecPage";
+import SecondPage from "./pages/secPage";
 import ThirdPage from "./pages/TrPage";
 
 export default function App() {
